@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: producao1
+    runtime: node
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: cosmetic-db
+          property: connectionString
+      - key: NODE_ENV
+        value: production
+
+databases:
+  - name: cosmetic-db
+    plan: free
