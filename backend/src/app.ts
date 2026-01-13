@@ -37,7 +37,7 @@ const frontendPath = path.join(__dirname, '../public');
 app.use(express.static(frontendPath));
 
 // Catch-all route for SPA
-app.get('*', (req, res, next) => {
+app.get('(.*)', (req, res, next) => {
     // If it's an API route that wasn't found, let it go to 404 or error handler
     if (req.url.startsWith('/products') ||
         req.url.startsWith('/formulas') ||
