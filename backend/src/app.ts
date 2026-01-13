@@ -36,16 +36,19 @@ app.use('/statistics', statisticsRoutes);
 const frontendPath = path.join(__dirname, '../public');
 app.use(express.static(frontendPath));
 
-// Catch-all route for SPA
-app.get('/:path*', (req, res, next) => {
-    // If it's an API route that wasn't found, let it go to 404 or error handler
+// Fallback route for SPA
+// This handles any request that didn't match the API routes above
+app.use((req, res, next) => {
+    // If it's an API route that wasn't found, return a 404
     if (req.url.startsWith('/products') ||
         req.url.startsWith('/formulas') ||
         req.url.startsWith('/production') ||
         req.url.startsWith('/inventory') ||
         req.url.startsWith('/statistics')) {
-        return next();
+        return res.status(404).json({ error: 'API route not found' });
     }
+
+    // For all other routes (like /dashboard, /products, etc.), serve the SPA index.html
     res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
