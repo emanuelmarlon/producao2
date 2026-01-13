@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const source = path.join(__dirname, 'frontend', 'dist');
-const target = path.join(__dirname, 'backend', 'public');
+const source = path.join(__dirname, '..', 'frontend', 'dist');
+const target = path.join(__dirname, '..', 'backend', 'public');
 
 console.log(`Copying from ${source} to ${target}...`);
 
