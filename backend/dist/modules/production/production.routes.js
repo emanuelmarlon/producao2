@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.productionRoutes = void 0;
+const express_1 = require("express");
+const production_controller_1 = require("./production.controller");
+const productionRoutes = (0, express_1.Router)();
+exports.productionRoutes = productionRoutes;
+console.log('LOADING PRODUCTION ROUTES');
+const productionController = new production_controller_1.ProductionController();
+productionRoutes.post('/', productionController.create);
+productionRoutes.get('/', productionController.findAll);
+productionRoutes.get('/:id', productionController.findById);
+productionRoutes.patch('/:id/status', productionController.updateStatus);
+productionRoutes.put('/:id', productionController.update);
+productionRoutes.delete('/:id', productionController.delete);
