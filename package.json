@@ -5,10 +5,9 @@
   "scripts": {
     "build:frontend": "cd frontend && npm install && npm run build",
     "build:backend": "cd backend && npm install && npm run build",
-    "copy:frontend": "node -e \"const fs=require('fs'); const path=require('path'); const public=path.join('backend', 'public'); if(!fs.existsSync(public)) fs.mkdirSync(public, {recursive:true}); const ncp=require('child_process'); if(process.platform==='win32') { ncp.execSync('xcopy /s /e /y frontend\\\\dist\\\\* backend\\\\public\\\\'); } else { ncp.execSync('cp -r frontend/dist/* backend/public/'); }\"",
+    "copy:frontend": "node scripts/copy-dist.js",
     "build": "npm run build:frontend && npm run copy:frontend && npm run build:backend",
-    "start": "cd backend && npm start",
-    "deploy": "gh-pages -d dist"
+    "start": "cd backend && npm start"
   },
   "devDependencies": {
     "gh-pages": "^6.3.0"
