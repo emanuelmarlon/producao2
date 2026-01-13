@@ -4,7 +4,7 @@
   "description": "Root configuration for Cosmetic ERP",
   "scripts": {
     "build:frontend": "cd frontend && npm install && npm run build",
-    "build:backend": "cd backend && npm install && npm run build",
+    "build:backend": "cd backend && npm install && npx prisma generate && npx prisma migrate deploy && npm run build",
     "copy:frontend": "node scripts/copy-dist.js",
     "build": "npm run build:frontend && npm run copy:frontend && npm run build:backend",
     "start": "cd backend && npm start"
